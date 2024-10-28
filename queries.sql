@@ -393,4 +393,23 @@ Sinquefield Cup                          Firouzja, Alireza              18-JAN-2
          2
 
 
-SQL>
+SELECT P.Name AS PlayerName, T.Name AS Tournament, MAX(R.PostMatchRating) AS MaxRating
+  2  FROM Player P
+  3  JOIN Rating R ON P.PlayerID = R.PlayerID
+  4  JOIN Match M ON R.MatchID = M.MatchID
+  5  JOIN Tournament T ON M.TournamentID = T.TournamentID
+  6  GROUP BY P.Name, T.Name
+  7  ORDER BY P.Name, Tournament;
+
+PLAYERNAME                     TOURNAMENT                                         MAXRATING
+------------------------------ -------------------------------------------------- ---------
+Abdusattorov, Nodirbek         Candidates Tournament                                   2786
+Carlsen, Magnus                FIDE World Chess Championship                           2832
+Caruana, Fabiano               Tata Steel Chess Tournament                             2793
+Erigaisi Arjun                 Tata Steel Chess Tournament                             2798
+Firouzja, Alireza              Sinquefield Cup                                         2787
+Gukesh D                       Candidates Tournament                                   2795
+Nakamura, Hikaru               FIDE World Chess Championship                           2800
+Nepomniachtchi, Ian            Grand Chess Tour Finals                                 2767
+So, Wesley                     Grand Chess Tour Finals                                 2759
+Wei, Yi                        Sinquefield Cup                                         2772
